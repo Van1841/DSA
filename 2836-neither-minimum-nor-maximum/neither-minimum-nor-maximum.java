@@ -1,9 +1,29 @@
 class Solution {
     public int findNonMinOrMax(int[] nums) {
-        Arrays.sort(nums);
-        if(nums.length-1 < 2){
-            return -1;
+
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+
+        int res = -1;
+
+        for(int i : nums)
+        {
+            min = Math.min(min, i);
+            max = Math.max(max, i);
         }
-        else return nums[1];
+
+      
+        for(int i : nums)
+        {
+            if(i!=min && i!=max)
+            {
+                res = i;
+            }
+        }
+
+
+        return res;
+
+
     }
 }
