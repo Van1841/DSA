@@ -10,16 +10,25 @@
  */
 class Solution {
     public ListNode middleNode(ListNode head) {
-        ListNode cursor = head;
-        int countlen = 0;
-        while(cursor!= null){
-            countlen++;
-            cursor = cursor.next;
+        // ListNode cursor = head;
+        // int countlen = 0;
+        // while(cursor!= null){
+        //     countlen++;
+        //     cursor = cursor.next;
+        // }
+        // ListNode point = head;
+        // for(int i = 1; i < (countlen/2)+1; i++){
+        //     point = point.next;
+        // }
+        // return point;
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        ListNode point = head;
-        for(int i = 1; i < (countlen/2)+1; i++){
-            point = point.next;
-        }
-        return point;
+        return slow;
     }
 }
