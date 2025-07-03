@@ -17,17 +17,18 @@ class Solution {
     int res = 0;
 
     public int diameterOfBinaryTree(TreeNode root) {
-        dfs(root);
+        dfs(root , 0);
         return res;        
     }
 
-    private int dfs(TreeNode root) {
+    private int dfs(TreeNode root , int maxi) {
         if (root == null) {
             return 0;
         }
 
-        int l = dfs(root.left);
-        int r = dfs(root.right);
+        int l = dfs(root.left , 0);
+        int r = dfs(root.right, 0);
+        maxi = Math.max(l + r + root.val , maxi);
 
         res = Math.max(res, l + r);
 
