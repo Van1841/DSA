@@ -21,6 +21,6 @@ class Solution {
                 }
             }
         }
-        return (five >= 0 && ten >= 0)? true:false;
+        return true;
     }
 }
