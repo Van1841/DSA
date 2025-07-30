@@ -1,24 +1,34 @@
 class Solution {
     public int[][] insert(int[][] intervals, int[] newInterval) {
-       List<int[]> intervalList = new ArrayList<>(Arrays.asList(intervals));
-        intervalList.add(newInterval);
-        Collections.sort(intervalList, (a, b) -> Integer.compare(a[0], b[0]));
+        List<int[]> mergedIntervals = new ArrayList<>();
+        int n = intervals.length;
+        int i = 0;
 
-        List<int[]> res = new ArrayList<>();
-        int[] current = intervalList.get(0);
-
-        for (int i = 1; i < intervalList.size(); i++) {
-            int[] interval = intervalList.get(i);
-            
-            if (current[1] >= interval[0]) {
-                current[1] = Math.max(current[1], interval[1]);
-            } else {
-                res.add(current);
-                current = interval;
-            }
+        // Add all intervals before the newInterval starts
+        while (i < n && intervals[i][1] < newInterval[0]) {
+            mergedIntervals.add(intervals[i]);
+            i++;
         }
 
-        res.add(current);
-        return res.toArray(new int[res.size()][]);
+        // Merge all overlapping intervals with newInterval
+        while (i < n && intervals[i][0] <= newInterval[1]) {
+            newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
+            newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
+            i++;
+        }
+        // Add the merged newInterval
+        mergedIntervals.add(newInterval);
+
+        // Add all the remaining intervals
+        while (i < n) {
+            mergedIntervals.add(intervals[i]);
+            i++;
+        }
+
+        // Convert the list to a 2D array
+        return mergedIntervals.toArray(new int[mergedIntervals.size()][]);
     }
 }
+
+
+
