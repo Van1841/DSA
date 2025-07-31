@@ -40,10 +40,10 @@ class LRUCache {
     }
 
     private void remove(Node node) {
-        Node prev = node.prev;
-        Node next = node.next;
-        prev.next = next;
-        next.prev = prev;
+        // Node prev = node.prev;
+        // Node next = node.next;
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
     }
 
     private void insert(Node node) {
