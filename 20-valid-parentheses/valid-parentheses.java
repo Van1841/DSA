@@ -7,7 +7,7 @@ class Solution {
 
            if(ch=='(' || ch=='{' || ch=='[')
                st.push(ch);
-           else if ( st.size()>0 && ch==']' && st.peek()=='[')
+           else if (st.size()>0 && ch==']' && st.peek()=='[')
                st.pop();
            else if (st.size()>0 && ch==')' && st.peek()=='(')
                 st.pop();
@@ -18,10 +18,7 @@ class Solution {
            
        }
 
-       if(st.size()==0)
-           return true ;
-       else
-           return false ;
+       return (st.size() == 0)? true :false;
        
     }
 }
