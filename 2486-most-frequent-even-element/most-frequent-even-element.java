@@ -7,7 +7,6 @@ class Solution {
 
         int ans = -1;
         int maxFreq = 0;
-        
         for(int i : map.keySet()){
             int freq = map.get(i);
             if(freq > maxFreq || (freq == maxFreq && i < ans)){
